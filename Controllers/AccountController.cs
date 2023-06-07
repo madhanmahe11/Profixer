@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Text.Json;
+﻿using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Profixer.Models;
 using Profixer.Response;
@@ -40,49 +39,15 @@ public class AccountController : Controller
                     return PartialView("Dashboard");
                 }
             }
-            return PartialView("Login", logininfo);
+            return Index();
         }
     }
 
-    private async Task<GenericResponse> PostResponse(string apiUrl, string data)
-    {
-        var genericResponse = new GenericResponse();
-
-        using (HttpClient client = new HttpClient())
-        {
-            var content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync(apiUrl, content);
-            if (response.IsSuccessStatusCode)
-            {
-                // responseContent = await response.Content.ReadAsStringAsync();
-                return new GenericResponse()
-                {
-                    IsSuccess = response.IsSuccessStatusCode,
-                    responseData = await response.Content.ReadAsStringAsync()
-                };
-            }
-            return genericResponse;
-        }
-    }
-
-
-
-    private async void GetResponse(string address)
-    {
-        var client = new HttpClient();
-        HttpResponseMessage response = await client.GetAsync(address);
-        response.EnsureSuccessStatusCode();
-        // result = await response.Content.ReadAsStringAsync();
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
+    // private async void GetResponse(string address)
+    // {
+    //     var client = new HttpClient();
+    //     HttpResponseMessage response = await client.GetAsync(address);
+    //     response.EnsureSuccessStatusCode();
+    //     // result = await response.Content.ReadAsStringAsync();
+    // }
 }
