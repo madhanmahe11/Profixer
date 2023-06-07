@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+   <title>Profixer - Dashboard</title>
+   <!-- Favicon -->
+   <link rel="shortcut icon" type="image/x-icon" href="~/img/favicon.png">
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="~/css/bootstrap.min.css">
+   <!-- Fontawesome CSS -->
+   <link rel="stylesheet" href="~/css/font-awesome.min.css">
+   <!-- Feathericon CSS -->
+   <link rel="stylesheet" href="~/css/feathericon.min.css">
+   <link rel="stylesheet" href="~/plugins/morris/morris.css">
+   <!-- Main CSS -->
+   <link rel="stylesheet" href="~/css/style.css">
+   <!--[if lt IE 9]>
+      <script src="~/js/html5shiv.min.js"></script>
+      <script src="~/js/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+<body>
+   <!-- Main Wrapper -->
+   <div class="main-wrapper">
+      <!-- Header -->
+      <div class="header">
+         <!-- Logo -->
+         <div class="header-left">
+            <a href="#" class="logo">
+               <img src="~/img/logo.png" alt="Logo">
+            </a>
+            <a href="#" class="logo logo-small">
+               <img src="~/img/logo-small.png" alt="Logo" width="30" height="30">
+            </a>
+         </div>
+         <!-- /Logo -->
+         <a href="javascript:void(0);" id="toggle_btn">
+            <i class="fe fe-text-align-left"></i>
+         </a>
+         <div class="top-nav-search">
+            <form>
+               <input type="text" class="form-control" placeholder="Search here">
+               <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+            </form>
+         </div>
+         <!-- Mobile Menu Toggle -->
+         <a class="mobile_btn" id="mobile_btn">
+            <i class="fa fa-bars"></i>
+         </a>
+         <!-- /Mobile Menu Toggle -->
+         <!-- Header Right Menu -->
+         <ul class="nav user-menu">
+            <!-- App Lists -->
+            <li class="nav-item dropdown app-dropdown">
+               <a class="nav-link dropdown-toggle" aria-expanded="false" role="button" data-toggle="dropdown"
+                  href="#"><i class="fe fe-app-menu"></i></a>
+               <ul class="dropdown-menu app-dropdown-menu">
+                  <li>
+                     <div class="app-list">
+                        <div class="row">
+                           <div class="col"><a class="app-item" href="#"><i
+                                    class="fa fa-envelope"></i><span>Email</span></a></div>
+                           <div class="col"><a class="app-item" href="#"><i
+                                    class="fa fa-calendar"></i><span>Calendar</span></a></div>
+                           <div class="col"><a class="app-item" href="#"><i
+                                    class="fa fa-comments"></i><span>Chat</span></a></div>
+                        </div>
+                     </div>
+                  </li>
+               </ul>
+            </li>
+            <!-- /App Lists -->
+            <!-- Notifications -->
+            <li class="nav-item dropdown noti-dropdown">
+               <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                  <i class="fe fe-bell"></i> <span class="badge badge-pill">3</span>
+               </a>
+               <div class="dropdown-menu notifications">
+                  <div class="topnav-dropdown-header">
+                     <span class="notification-title">Notifications</span>
+                     <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
+                  </div>
+                  <div class="noti-content">
+                     <ul class="notification-list">
+                        <li class="notification-message">
+                           <a href="#">
+                              <div class="media">
+                                 <span class="avatar avatar-sm">
+                                 </span>
+                                 <div class="media-body">
+                                 </div>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="notification-message">
+                           <a href="#">
+                              <div class="media">
+                                 <span class="avatar avatar-sm">
+                                 </span>
+                                 <div class="media-body">
+                                 </div>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="notification-message">
+                           <a href="#">
+                              <div class="media">
+                                 <span class="avatar avatar-sm">
+                                 </span>
+                                 <div class="media-body">
+                                 </div>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="notification-message">
+                           <a href="#">
+                              <div class="media">
+                                 <span class="avatar avatar-sm">
+                                 </span>
+                                 <div class="media-body">
+                                 </div>
+                              </div>
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="topnav-dropdown-footer">
+                     <a href="#">View all Notifications</a>
+                  </div>
+               </div>
+            </li>
+            <!-- /Notifications -->
+            <!-- User Menu -->
+            <li class="nav-item dropdown has-arrow">
+               <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                  <span class="user-img"><img class="rounded-circle" src="~/img/profiles/avatar-01.png" width="31"
+                        alt="Ryan Taylor"></span>
+               </a>
+               <div class="dropdown-menu">
+                  <div class="user-header">
+                     <div class="avatar avatar-sm">
+                        <img src="~/img/profiles/avatar-01.png" alt="User Image" class="avatar-img rounded-circle">
+                     </div>
+                     <div class="user-text">
+                        <h6>Mohamed</h6>
+                        <p class="text-muted mb-0">Admin <br> +966 123456789</p>
+                     </div>
+                  </div>
+                  <a class="dropdown-item" href="#"><img src="~/img/change_account_details.png" width="20"> &nbsp;
+                     Change Account Details</a>
+                  <a class="dropdown-item" href="#"><img src="~/img/change_password.png" width="20"> &nbsp; Change
+                     Password</a>
+                  <a class="dropdown-item" href="#"><img src="~/img/privacy_policy.png" width="20"> &nbsp; Privacy
+                     Policy</a>
+                  <a class="dropdown-item" href="#"><img src="~/img/change_password.png" width="20"> &nbsp;
+                     Logout</a>
+               </div>
+            </li>
+            <!-- /User Menu -->
+         </ul>
+         <!-- /Header Right Menu -->
+      </div>
+      <!-- /Header -->
+      <!-- Sidebar -->
+      <div class="sidebar" id="sidebar">
+         <div class="sidebar-inner slimscroll">
+            <div id="sidebar-menu" class="sidebar-menu">
+               <ul>
+                  <!-- <li class="menu-title"> 
+                        <span>Main</span>
+                        </li> -->
+                  <!-- <li class="active">
+                        <a href="index.html"><i class="fe fe-home"></i> <span> Dashboard</span> <span></span></a>
+                     </li> -->
+                  <li class="submenu">
+                     <!-- <a href="#" class="active subdrop"><i class="fe fe-tiled"></i> <span> Services</span> <span class="menu-arrow"></span></a> -->
+                     <a href="index.html"><i class="fe fe-home"></i> <span> Dashboard</span> <span
+                           class="menu-arrow"></span></a>
+                     <ul style="display: none;">
+                        <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Support Desk</a></li>
+
+                     </ul>
+                  </li>
+                  <li class="submenu">
+                     <!-- <a href="#" class="active subdrop"><i class="fe fe-tiled"></i> <span> Services</span> <span class="menu-arrow"></span></a> -->
+                     <a href="#"><i class="fe fe-tiled"></i> <span> Master</span> <span class="menu-arrow"></span></a>
+                     <ul style="display: none;">
+                        <li><a href="city.html"><i class="fa fa-angle-double-right" aria-hidden="true"></i>City</a></li>
+                        <li><a href="area.html"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Area</a></li>
+                        <li><a href="service.html"><i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                              Services</span></a></li>
+                        <li><a href="complaint_nature.html"><i class="fa fa-angle-double-right"
+                                 aria-hidden="true"></i>Complaint Nature</a></li>
+                        <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Profixer</a></li>
+                        <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Service Provider</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Technician</a></li>
+                        <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Customer</a></li>
+                        <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Holidays</a></li>
+
+                     </ul>
+                  </li>
+                  <li class="submenu">
+                     <a href="#"><i class="fe fe-document"></i> <span> Services Desk</span> <span
+                           class="menu-arrow"></span></a>
+                     <!-- <a href="#" class="active subdrop"><i class="fe fe-document"></i> <span> Services Desk</span> <span class="menu-arrow"></span></a> -->
+                     <ul style="display: none;">
+                        <li><a href="add_ticket.html"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Add
+                              Ticket</a></li>
+                        <!-- <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Exsiting Customer</a></li> -->
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+      <!-- /Sidebar -->
+
+      <!-- <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+               <div id="sidebar-menu" class="sidebar-menu">
+                  <ul>!-->
+      <!-- <li class="menu-title"> 
+                        <span>Main</span>
+                        </li> -->
+      <!--<li class="active">
+                        <a href="index.html"><i class="fe fe-home"></i> <span> Dashboard</span> <span></span></a>
+                     </li>
+                     <li class="submenu">!-->
+      <!-- <a href="#" class="active subdrop"><i class="fe fe-tiled"></i> <span> Services</span> <span class="menu-arrow"></span></a> -->
+      <!--<a href="#"><i class="fe fe-tiled"></i> <span> Services</span> <span class="menu-arrow"></span></a>
+                        <ul style="display: none;">
+                           <li><a href="booked.html"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Booked</a></li>
+                           <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Services</a></li>
+                           <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Category</a></li>
+                           <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Technician</a></li>
+                           <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Customer</a></li>
+                           <li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Service Provider</a></li>
+
+                        </ul>
+                     </li>
+                     <li class="submenu">
+                        <a href="#"><i class="fe fe-document"></i> <span> Services Desk</span> <span class="menu-arrow"></span></a>!-->
+      <!-- <a href="#" class="active subdrop"><i class="fe fe-document"></i> <span> Services Desk</span> <span class="menu-arrow"></span></a> -->
+      <!--<ul style="display: none;">
+                           <li><a href="add_ticket.html"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Add Ticket</a></li>!-->
+      <!-- <li><a href=""><i class="fa fa-angle-double-right" aria-hidden="true"></i>Exsiting Customer</a></li> -->
+      <!--</ul>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div> -->
+      <!-- Page Wrapper -->
+      <div class="page-wrapper">
+         <div class="content container-fluid">
+            <!-- Page Header -->
+            <div class="page-header">
+               <div class="row">
+                  <div class="col-sm-6">
+                     <h5 class="page-title">Overview</h5>
+                     <!-- <ul class="breadcrumb">
+                           <li class="breadcrumb-item active">Overview</li>
+                           </ul> -->
+                  </div>
+                  <div style="text-align:right;" class="col-sm-6">
+                     <a href="add_ticket.html"> <button class="btn buttons-pdf buttons-html5 btn-sm mr-1" style="    color: #fff;
+                           border-color: #F4891E;
+                           background-color: #F4891E;" tabindex="0" aria-controls="" type="button" title="Add"><span><i
+                                 class="fa fa-plus-square" aria-hidden="true"></i></span> &nbsp; <b>Add
+                              Ticket</b></button></a>
+                     <!-- <h3 class="page-title">Overview</h3> -->
+                     <!-- <ul class="breadcrumb">
+                           <li class="breadcrumb-item active">Overview</li>
+                           </ul> -->
+                  </div>
+               </div>
+            </div>
+            <!-- /Page Header -->
+            <div class="row">
+               <div class="col-xl-3 col-sm-6 col-12">
+                  <div class="card">
+                     <div class="round-1"></div>
+                     <div class="round-2"></div>
+                     <div class="inner-content">
+                        <div class="image-content">
+                           <img src="~/img/Total.png" alt="">
+                        </div>
+                        <div class="number-content">
+                           <h1 style="color: #34C2FF;">100</h1>
+                           <p>Total</p>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- <div class="crd">
+                        <div style="background-image: url(~/img/overview.png);
+                           background-size: 100% 100%;    
+                           background-repeat: no-repeat;" class="card-body">
+                           <div class="dash-widget-header">
+                              <img src="~/img/booked.png">
+                           </div>
+                           <div class="dash-widget-info">
+                              <h3>25</h3>
+                              <h6 class="text-muted">Booked</h6>
+                           </div>
+                        </div>
+                        </div> -->
+               </div>
+               <div class="col-xl-3 col-sm-6 col-12">
+                  <a href="open.html">
+                     <div class="card">
+                        <div class="round-3"></div>
+                        <div class="round-4"></div>
+                        <div class="inner-content">
+                           <div class="image-content">
+                              <img src="~/img/icon2.png" alt="">
+                           </div>
+                           <div class="number-content">
+                              <h1 style="color:#F4891E;">25</h1>
+                              <p>Open</p>
+                           </div>
+                        </div>
+                     </div>
+                  </a>
+                  <!-- <div  class="crd">
+                        <div style="background-image: url(~/img/overview.png);
+                           background-size: 100% 100%;    
+                           background-repeat: no-repeat;" class="card-body">
+                           <div class="dash-widget-header">
+                              <img src="~/img/accepted.png">
+                           </div>
+                           <div class="dash-widget-info">
+                              <h3>26</h3>
+                              <h6 class="text-muted">Accepted</h6>
+                           </div>
+                        </div>
+                        </div> -->
+               </div>
+               <div class="col-xl-3 col-sm-6 col-12">
+                  <a href="accepted.html">
+                     <div class="card">
+                        <div class="round-5"></div>
+                        <div class="round-6"></div>
+                        <div class="inner-content">
+                           <div class="image-content">
+                              <img src="~/img/icon3.png" alt="">
+                           </div>
+                           <div class="number-content">
+                              <h1 style="color:#16A000;">20</h1>
+                              <p>Accepted</p>
+                           </div>
+                        </div>
+                     </div>
+                  </a>
+                  <!-- <div  class="crd">
+                        <div style="background-image: url(~/img/overview.png);
+                           background-size: 100% 100%;    
+                           background-repeat: no-repeat;" class="card-body">
+                           <div class="dash-widget-header">
+                              <img src="~/img/rejected.png">
+                           </div>
+                           <div class="dash-widget-info">
+                              <h3>19</h3>
+                              <h6 class="text-muted">Rejected</h6>
+                           </div>
+                        </div>
+                        </div> -->
+               </div>
+               <div class="col-xl-3 col-sm-6 col-12">
+                  <div class="card">
+                     <div class="round-7"></div>
+                     <div class="round-8"></div>
+                     <div class="inner-content">
+                        <div class="image-content">
+                           <img src="~/img/icon4.png" alt="">
+                        </div>
+                        <div class="number-content">
+                           <h1 style="color:#A40093;">25</h1>
+                           <p>Assigned</p>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- <div  class="crd">
+                        <div style="background-image: url(~/img/overview.png);
+                           background-size: 100% 100%;    
+                           background-repeat: no-repeat;" class="card-body">
+                           <div class="dash-widget-header">
+                              <img src="~/img/assigned.png">
+                           </div>
+                           <div class="dash-widget-info">
+                              <h3>24</h3>
+                              <h6 class="text-muted">Assigned</h6>
+                           </div>
+                        </div>
+                        </div> -->
+               </div>
+               <div class="col-xl-3 col-sm-6 col-12">
+                  <div class="card">
+                     <div class="round-9"></div>
+                     <div class="round-10"></div>
+                     <div class="inner-content">
+                        <div class="image-content">
+                           <img src="~/img/icon5.png" alt="">
+                        </div>
+                        <div class="number-content">
+                           <h1 style="color:#3787FF;">87</h1>
+                           <p>In-Progress</p>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- <div  class="crd">
+                        <div style="background-image: url(~/img/overview.png);
+                           background-size: 100% 100%;    
+                           background-repeat: no-repeat;" class="card-body">
+                           <div class="dash-widget-header">
+                              <img src="~/img/re-assign.png">
+                           </div>
+                           <div class="dash-widget-info">
+                              <h3>13</h3>
+                              <h6 class="text-muted">Re-assign</h6>
+                           </div>
+                        </div>
+                        </div> -->
+               </div>
+               <div class="col-xl-3 col-sm-6 col-12">
+                  <div class="card">
+                     <div class="round-11"></div>
+                     <div class="round-12"></div>
+                     <div class="inner-content">
+                        <div class="image-content">
+                           <img src="~/img/icon6.png" alt="">
+                        </div>
+                        <div class="number-content">
+                           <h1 style="color:#A00000;">32</h1>
+                           <p>On-Hold</p>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- <div  class="crd">
+                        <div style="background-image: url(~/img/overview.png);
+                           background-size: 100% 100%;    
+                           background-repeat: no-repeat;" class="card-body">
+                           <div class="dash-widget-header">
+                              <img src="~/img/in-progress.png">
+                           </div>
+                           <div class="dash-widget-info">
+                              <h3>13</h3>
+                              <h6 class="text-muted">In-Progress</h6>
+                           </div>
+                        </div>
+                        </div> -->
+               </div>
+               <div class="col-xl-3 col-sm-6 col-12">
+                  <a href="re_assign.html">
+                     <div class="card">
+                        <div class="round-13"></div>
+                        <div class="round-14"></div>
+                        <div class="inner-content">
+                           <div class="image-content">
+                              <img src="~/img/icon7.png" alt="">
+                           </div>
+                           <div class="number-content">
+                              <h1 style="color:#1BBDA0;">26</h1>
+                              <p>Re-assign</p>
+                           </div>
+                        </div>
+                     </div>
+                  </a>
+                  <!-- <div  class="crd">
+                        <div style="background-image: url(~/img/overview.png);
+                           background-size: 100% 100%;    
+                           background-repeat: no-repeat;" class="card-body">
+                           <div class="dash-widget-header">
+                              <img src="~/img/resolved.png">
+                           </div>
+                           <div class="dash-widget-info">
+                              <h3>19</h3>
+                              <h6 class="text-muted">Resolved</h6>
+                           </div>
+                        </div>
+                        </div> -->
+               </div>
+               <div class="col-xl-3 col-sm-6 col-12">
+                  <div class="card">
+                     <div class="round-15"></div>
+                     <div class="round-16"></div>
+                     <div class="inner-content">
+                        <div class="image-content">
+                           <img src="~/img/icon8.png" alt="">
+                        </div>
+                        <div class="number-content">
+                           <h1 style="color:#FE0000;">11</h1>
+                           <p>Rejected</p>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- <div  class="crd">
+                        <div style="background-image: url(~/img/overview.png);
+                           background-size: 100% 100%;    
+                           background-repeat: no-repeat;" class="card-body">
+                           <div class="dash-widget-header">
+                              <img src="~/img/on-hold.png">
+                           </div>
+                           <div class="dash-widget-info">
+                              <h3>15</h3>
+                              <h6 class="text-muted">On-Hold</h6>
+                           </div>
+                        </div>
+                        </div> -->
+               </div>
+               <div class="col-xl-3 col-sm-6 col-12">
+                  <div class="card">
+                     <div class="round-17"></div>
+                     <div class="round-18"></div>
+                     <div class="inner-content">
+                        <div class="image-content">
+                           <img src="~/img/icon9.png" alt="">
+                        </div>
+                        <div class="number-content">
+                           <h1 style="color:#0400C2;">22</h1>
+                           <p>Resolved</p>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- <div  class="crd">
+                        <div style="background-image: url(~/img/overview.png);
+                           background-size: 100% 100%;    
+                           background-repeat: no-repeat;" class="card-body">
+                           <div class="dash-widget-header">
+                              <img src="~/img/completed.png">
+                           </div>
+                           <div class="dash-widget-info">
+                              <h3>15</h3>
+                              <h6 class="text-muted">Completed</h6>
+                           </div>
+                        </div>
+                        </div> -->
+               </div>
+               <div class="col-xl-3 col-sm-6 col-12">
+                  <div class="card">
+                     <div class="round-19"></div>
+                     <div class="round-20"></div>
+                     <div class="inner-content">
+                        <div class="image-content">
+                           <img src="~/img/icon10.png" alt="">
+                        </div>
+                        <div class="number-content">
+                           <h1 style="color:#73BA00;">10</h1>
+                           <p>Completed</p>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- <div  class="crd">
+                        <div style="background-image: url(~/img/overview.png);
+                           background-size: 100% 100%;    
+                           background-repeat: no-repeat;" class="card-body">
+                           <div class="dash-widget-header">
+                              <img src="~/img/completed.png">
+                           </div>
+                           <div class="dash-widget-info">
+                              <h3>15</h3>
+                              <h6 class="text-muted">Completed</h6>
+                           </div>
+                        </div>
+                        </div> -->
+               </div>
+               <div class="col-xl-3 col-sm-6 col-12">
+                  <div class="card">
+                     <div class="round-21"></div>
+                     <div class="round-22"></div>
+                     <div class="inner-content">
+                        <div class="image-content">
+                           <img src="~/img/icon11.png" alt="">
+                        </div>
+                        <div class="number-content">
+                           <h1 style="color:#FF4FED;">51</h1>
+                           <p>Cancelled</p>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- <div  class="crd">
+                        <div style="background-image: url(~/img/overview.png);
+                           background-size: 100% 100%;    
+                           background-repeat: no-repeat;" class="card-body">
+                           <div class="dash-widget-header">
+                              <img src="~/img/completed.png">
+                           </div>
+                           <div class="dash-widget-info">
+                              <h3>15</h3>
+                              <h6 class="text-muted">Completed</h6>
+                           </div>
+                        </div>
+                        </div> -->
+               </div>
+            </div>
+            <!-- <div class="row">
+                  <div class="col-md-12 col-lg-12">
+
+                     <div class="">
+                        <div style="text-align:right;">
+                           <img src="~/img/plus.png" width="50" alt="">
+                        </div>
+                     </div>
+
+                  </div>
+                  </div> -->
+         </div>
+         <br>
+         <hr>
+         <div class="footer-bottom">
+            <div class="container">
+               <p style="text-align:center;"><b>© 2023 All Rights Reserved. Developed and Maintained by <img
+                        src="~/img/dbzeus.png" alt="Logo" style="width:70px;"></b></p>
+            </div>
+         </div>
+      </div>
+      <!-- /Page Wrapper -->
+   </div>
+   <!-- /Main Wrapper -->
+   <!-- jQuery -->
+   <script src="~/js/jquery-3.2.1.min.js"></script>
+   <!-- Bootstrap Core JS -->
+   <script src="~/js/popper.min.js"></script>
+   <script src="~/js/bootstrap.min.js"></script>
+   <!-- Slimscroll JS -->
+   <script src="~/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+   <script src="~/plugins/raphael/raphael.min.js"></script>
+   <script src="~/plugins/morris/morris.min.js"></script>
+   <script src="~/js/chart.morris.js"></script>
+   <!-- Custom JS -->
+   <script src="~/js/script.js"></script>
+</body>
+
+</html>
