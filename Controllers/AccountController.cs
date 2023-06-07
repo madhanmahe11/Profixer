@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Profixer.Models;
 using Profixer.Response;
 
@@ -21,27 +22,27 @@ public class AccountController : Controller
         return PartialView("Login");
     }
 
-    public async Task<IActionResult> Dashboard(LoginByUNandPwd loginInfo)
+    public async Task<IActionResult> Dashboard(LoginByUNandPwd loginData)
     {
         string apiUrl = $"{_config.GetSection("BaseURL").Value}api/Account/UserLogin";
-        string data = Newtonsoft.Json.JsonConvert.SerializeObject(loginInfo);
-        var response = await Post(apiUrl, data);
-        string responseContent = await response.Content.ReadAsStringAsync();
-        LoginResponse loginResponse = JsonSerializer.Deserialize<LoginResponse>(responseContent);
-        if (loginResponse.RtnStatus)
+        var response = await Post(apiUrl, Newtonsoft.Json.JsonConvert.SerializeObject(loginData));
+        dynamic data = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
+
+        if ((bool)data?.RtnStatus.Value)
         {
-            DashboardPage(1);
+            response = await DashboardPage((int)data?.RtnData.RoleID);
+            data = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
             return PartialView("Dashboard");
         }
         ModelState.AddModelError("", "Incorrect Login details");
         return Index();
     }
 
-    public async void DashboardPage(int roleId)
+    public async Task<HttpResponseMessage> DashboardPage(int roleId)
     {
         string apiUrl = $"{_config.GetSection("BaseURL").Value}api/Account/GetMenuWeb?RoleId={roleId}";
         var response = await Get(apiUrl);
-        string getresponseContent = await response.Content.ReadAsStringAsync();
+        return response;
     }
 
     public async Task<HttpResponseMessage> Post(string apiUrl, string data)
