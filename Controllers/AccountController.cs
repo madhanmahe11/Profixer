@@ -21,33 +21,45 @@ public class AccountController : Controller
         return PartialView("Login");
     }
 
-    public async Task<IActionResult> Dashboard(LoginByUNandPwd logininfo)
+    public async Task<IActionResult> Dashboard(LoginByUNandPwd loginInfo)
     {
-        string apiUrl = _config.GetSection("BaseURL").Value + "api/Account/UserLogin";
+        string apiUrl = $"{_config.GetSection("BaseURL").Value}api/Account/UserLogin";
+        string data = Newtonsoft.Json.JsonConvert.SerializeObject(loginInfo);
+        var response = await Post(apiUrl, data);
+        string responseContent = await response.Content.ReadAsStringAsync();
+        LoginResponse loginResponse = JsonSerializer.Deserialize<LoginResponse>(responseContent);
+        if (loginResponse.RtnStatus)
+        {
+            DashboardPage(1);
+            return PartialView("Dashboard");
+        }
+        ModelState.AddModelError("", "Incorrect Login details");
+        return Index();
+    }
 
-        string data = Newtonsoft.Json.JsonConvert.SerializeObject(logininfo);
+    public async void DashboardPage(int roleId)
+    {
+        string apiUrl = $"{_config.GetSection("BaseURL").Value}api/Account/GetMenuWeb?RoleId={roleId}";
+        var response = await Get(apiUrl);
+        string getresponseContent = await response.Content.ReadAsStringAsync();
+    }
+
+    public async Task<HttpResponseMessage> Post(string apiUrl, string data)
+    {
         using (HttpClient client = new HttpClient())
         {
             var content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync(apiUrl, content);
-            if (response.IsSuccessStatusCode)
-            {
-                string responseContent = await response.Content.ReadAsStringAsync();
-                LoginResponse resposneData = JsonSerializer.Deserialize<LoginResponse>(responseContent);
-                if (resposneData.RtnStatus)
-                {
-                    return PartialView("Dashboard");
-                }
-            }
-            return Index();
+            return response;
         }
     }
 
-    // private async void GetResponse(string address)
-    // {
-    //     var client = new HttpClient();
-    //     HttpResponseMessage response = await client.GetAsync(address);
-    //     response.EnsureSuccessStatusCode();
-    //     // result = await response.Content.ReadAsStringAsync();
-    // }
+    public async Task<HttpResponseMessage> Get(string apiUrl)
+    {
+        using (HttpClient client = new HttpClient())
+        {
+            HttpResponseMessage response = await client.GetAsync(apiUrl);
+            return response;
+        }
+    }
 }
