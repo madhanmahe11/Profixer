@@ -32,7 +32,7 @@ public class AccountController : Controller
         {
             response = await DashboardPage((int)data?.RtnData.RoleID);
             data = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
-            return PartialView("Dashboard");
+            return View();
         }
         ModelState.AddModelError("", "Incorrect Login details");
         return Index();
