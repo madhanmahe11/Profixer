@@ -1,0 +1,238 @@
+@model Profixer.Response.City
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+   <title>Add City</title>
+   <!-- Favicon -->
+   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+   <!-- Fontawesome CSS -->
+   <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+   <!-- Feathericon CSS -->
+   <link rel="stylesheet" href="assets/css/feathericon.min.css">
+   <link rel="stylesheet" href="assets/plugins/morris/morris.css">
+   <!-- Main CSS -->
+   <link rel="stylesheet" href="assets/css/style.css">
+   <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.min.js"></script>
+      <script src="assets/js/respond.min.js"></script>
+      <![endif]-->
+
+   <style>
+      * {
+         box-sizing: border-box;
+      }
+
+      #myInput {
+         background-image: url('/css/searchicon.png');
+         background-position: 10px 10px;
+         background-repeat: no-repeat;
+         width: 100%;
+         font-size: 16px;
+         padding: 12px 20px 12px 40px;
+         border: 1px solid #ddd;
+         margin-bottom: 12px;
+      }
+
+      #myTable {
+         border-collapse: collapse;
+         width: 100%;
+         border: 1px solid #ddd;
+         font-size: 18px;
+      }
+
+      #myTable th,
+      #myTable td {
+         text-align: left;
+         padding: 10px;
+         font-size: 15px;
+      }
+
+      #myTable tr {
+         border-bottom: 1px solid #ddd;
+      }
+
+      #myTable tr.header,
+      #myTable tr:hover {
+         background-color: #f1f1f1;
+      }
+   </style>
+</head>
+
+<body>
+   <!-- Page Wrapper -->
+   <div class="page-wrapper">
+      <div class="content container-fluid">
+         <!-- Page Header -->
+         <div class="page-header">
+            <div class="row">
+               <div class="col-sm-12">
+                  <h5 class="page-title">Add City</h5>
+
+               </div>
+            </div>
+         </div>
+         <!-- /Page Header -->
+         <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+               <div class="card">
+                  <div class="card-body">
+                     <form action="#">
+                        <div class="row">
+                           <div class="col-xl-12">
+                              <div class="form-group row">
+                                 <label class="col-lg-12 col-form-label">City Name</label>
+                                 <div class="col-lg-12">
+                                    <input type="text" class="form-control" placeholder=@Model.RtnData?.FirstOrDefault()?.CityName>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <label class="col-lg-12 col-form-label">Country Name</label>
+                                 <div class="col-lg-12">
+                                    <input type="text" class="form-control" placeholder=@Model.RtnData?.FirstOrDefault()?.CountryName>
+                                 </div>
+                              </div>
+
+
+                              <div class="form-group row">
+                                 <label class="col-lg-5 col-form-label">Status</label>
+                                 <div style="text-align: center;" class="col-lg-7">
+                                    <button class="btn btn-primary" href="#"
+                                       style="background-color: #DAFFD4; border: none; color: green;"><b><i
+                                             class="fa fa-check" aria-hidden="true"></i> Active</b></button> <button
+                                       class="btn btn-primary"
+                                       style="background-color: #F5F5F5; border: none; color: #444;"><b><i
+                                             class="fa fa-times" aria-hidden="true"></i> Inactive</b></button>
+                                 </div>
+
+                              </div>
+
+                              <div class="form-group row">
+                                 <!-- <label class="col-lg-6 col-form-label">Status</label> -->
+                                 <div style="text-align: center;" class="col-lg-12">
+                                    <button class="btn btn-primary" href="#" onclick="show('popup111')"><b>&nbsp;
+                                          &nbsp; Add &nbsp; &nbsp;</b></button>
+                                 </div>
+
+                              </div>
+                              <div class="text-center">
+                                 <div class="popup111" id="popup111">
+                                    <img class="rounded-circle" src="assets/img/tick.png" alt="" style="width: 120px;">
+                                    <h5 style="color:#F4891E;">Added Successfull!</h5>
+                                    <p>Work with Profixer and Earn more...!!</p>
+                                    <!-- <button type="submit" class="btn btn-primary" onclick="myFunction2()"><b>View</b></button> -->
+                                    <a href="#" class="btn btn-primary" onclick="hide('popup111')"><b>Ok</b></a>
+                                 </div>
+                              </div>
+
+                              <!-- <div class="form-group row">!-->
+                              <!-- <label class="col-lg-5 col-form-label">Customer Name</label> -->
+                              <!-- <input class="col-lg-10 col-form-label" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Type in a name">
+                                    <div class="col-lg-2 text-center">
+                                       <button type="submit" class="btn btn-primary" style="width:50px; height: 50px;"><b><a href="#" style="color:#fff;"><i class="fa fa-plus" aria-hidden="true"></i></a></b></button>
+                                    </div>
+                                 </div> -->
+
+                              <!-- <div class="form-group row"> -->
+                              <!-- <p>Customer Name / Mobile Number</p> -->
+                              <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Type in a name"><button type="submit" class="btn btn-primary"><b><a href="#" style="color:#fff;"><i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Add as New Customer</a></b></button> -->
+
+                              <!-- <table id="myTable"> -->
+
+                              <!-- <tr>
+                                             <td colspan="2" style="text-align:center;"><button type="submit" class="btn btn-primary"><b><a href="add_ticket_details.html" style="color:#fff;"><i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Add as New Customer</a></b></button></td>
+                                          </tr> -->
+                              <!--  <tr>
+                                             <td><button class="btn buttons-pdf buttons-html5 btn-sm mr-1" style="color: #fff; border-color: #F4891E; background-color: #F4891E;" tabindex="0" aria-controls="" type="button" title="Add"><span><b>Mu</b></span></button></td>
+                                             <td ><a href="#" style="color: #F4891E;">Muscat<br> <span style="color: #F4891E;">Oman</span></a></td>
+                                             <td style="text-align:right;"><label class="switch">
+  <input type="checkbox" checked>
+  <span class="slider round"></span>
+</label></td>
+                                          </tr>
+                                          <tr>
+                                             <td><button class="btn buttons-pdf buttons-html5 btn-sm mr-1" style="color: #fff; border-color: #F4891E; background-color: #F4891E;" tabindex="0" aria-controls="" type="button" title="Add"><span><b>Se</b></span></button></td>
+                                             <td><a href="#" style="color: #F4891E;">Seeb<br> <span style="color: #F4891E;">Oman</span></a></td>
+                                             <td style="text-align:right;"><label class="switch">
+  <input type="checkbox" checked>
+  <span class="slider round"></span>
+</label></td>
+                                          </tr>
+                                       </table>
+                                    </div> -->
+                           </div>
+
+                        </div>
+
+                     </form>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-3"></div>
+         </div>
+      </div>
+      <br><br><br>
+      <hr>
+      <div class="footer-bottom">
+         <div class="container">
+            <p style="text-align:center;"><b>© 2023 All Rights Reserved. Developed and Maintained by <img
+                     src="assets/img/dbzeus.png" alt="Logo" style="width:70px;"></b></p>
+         </div>
+      </div>
+   </div>
+   <!-- /Page Wrapper -->
+   <!-- jQuery -->
+   <script src="assets/js/jquery-3.2.1.min.js"></script>
+   <!-- Bootstrap Core JS -->
+   <script src="assets/js/popper.min.js"></script>
+   <script src="assets/js/bootstrap.min.js"></script>
+   <!-- Slimscroll JS -->
+   <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+   <script src="assets/plugins/raphael/raphael.min.js"></script>
+   <script src="assets/plugins/morris/morris.min.js"></script>
+   <script src="assets/js/chart.morris.js"></script>
+   <!-- Custom JS -->
+   <script src="assets/js/script.js"></script>
+
+   <script>
+      function myFunction() {
+         var input, filter, table, tr, td, i, txtValue;
+         input = document.getElementById("myInput");
+         filter = input.value.toUpperCase();
+         table = document.getElementById("myTable");
+         tr = table.getElementsByTagName("tr");
+         for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+               txtValue = td.textContent || td.innerText;
+               if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  tr[i].style.display = "";
+               } else {
+                  tr[i].style.display = "none";
+               }
+            }
+         }
+      }
+   </script>
+
+   <script>
+      $ = function (id) {
+         return document.getElementById(id);
+      }
+
+      var show = function (id) {
+         $(id).style.display = 'block';
+      }
+      var hide = function (id) {
+         $(id).style.display = 'none';
+      }
+   </script>
+</body>
+
+</html>

@@ -1,10 +1,9 @@
 namespace Profixer.Response
 {
-    public class ReturnResponse
+    public class City
     {
         public List<RtnData> RtnData { get; set; }
     }
-
     public class RtnData
     {
         public int CityID { get; set; }

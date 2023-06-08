@@ -1,4 +1,5 @@
-@model Profixer.Response.ReturnResponse
+@model Profixer.Response.City
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -113,9 +114,9 @@
                                        <tr>
                                           <td><button class="btn buttons-pdf buttons-html5 btn-sm mr-1"
                                                 style="color: #fff; border-color: #F4891E; background-color: #F4891E;"
-                                                tabindex="0" aria-controls="" type="button"
+                                                tabindex="0" aria-controls="" type="button" 
                                                 title="Add"><span><b>@item.CityName.Substring(0,2)</b></span></button></td>
-                                          <td><a href="edit_city.html" style="color: #F4891E;">@item.CityName<br> <span
+                                          <td><a href="@Url.Action("EditCity", "Master", new { countryID = @item.CountryID, cityID = @item.CityID })" style="color: #F4891E;">@item.CityName<br> <span
                                                    style="color: #F4891E;">@item.CountryName</span></a></td>
                                           <td style="text-align:right;"><label class="switch">
                                                 <input type="checkbox" @isChecked>
