@@ -1,4 +1,4 @@
-@model Profixer.Response.City
+@model Profixer.Response.City.City
 
 <!DOCTYPE html>
 <html lang="en">
@@ -93,7 +93,8 @@
                                     placeholder="Search" title="Type in a name">
                                  <div class="col-lg-3 text-center">
                                     <button type="submit" class="btn btn-primary"
-                                       style="width:70px; height: 50px;"><b><a href="add_city.html"
+                                       style="width:70px; height: 50px;"><b><a
+                                             href="@Url.Action("AddCity", "Master", new { userID = ViewData["UserID"] })"
                                              style="color:#fff;"><i class="fa fa-plus" aria-hidden="true"></i>
                                              Add</a></b></button>
                                  </div>
@@ -114,9 +115,10 @@
                                        <tr>
                                           <td><button class="btn buttons-pdf buttons-html5 btn-sm mr-1"
                                                 style="color: #fff; border-color: #F4891E; background-color: #F4891E;"
-                                                tabindex="0" aria-controls="" type="button" 
+                                                tabindex="0" aria-controls="" type="button"
                                                 title="Add"><span><b>@item.CityName.Substring(0,2)</b></span></button></td>
-                                          <td><a href="@Url.Action("EditCity", "Master", new { countryID = @item.CountryID, cityID = @item.CityID })" style="color: #F4891E;">@item.CityName<br> <span
+                                          <td><a href="@Url.Action("EditCity", "Master", new { countryID = @item.CountryID, cityID = @item.CityID })"
+                                                data-method="post" style="color: #F4891E;">@item.CityName<br> <span
                                                    style="color: #F4891E;">@item.CountryName</span></a></td>
                                           <td style="text-align:right;"><label class="switch">
                                                 <input type="checkbox" @isChecked>

@@ -167,7 +167,7 @@
             <!-- /Header Right Menu -->
         </div>
         <!-- /Header -->
-
+        
         <!-- Sidebar -->
         <div class="sidebar" id="sidebar">
             <div class="sidebar-inner slimscroll">
@@ -194,8 +194,8 @@
                             <a href="#"><i class="fe fe-tiled"></i> <span> Master</span> <span
                                     class="menu-arrow"></span></a>
                             <ul style="display: none;">
-                                <li><a asp-controller="Master" asp-action="CityList"><i class="fa fa-angle-double-right"
-                                            aria-hidden="true"></i>City</a></li>
+                                <li><a href="@Url.Action("CityList", "Master", new { userID = @ViewData["UserID"] })"><i
+                                            class="fa fa-angle-double-right" aria-hidden="true"></i>City</a></li>
                                 <li><a href="area.html"><i class="fa fa-angle-double-right"
                                             aria-hidden="true"></i>Area</a></li>
                                 <li><a href="service.html"><i class="fa fa-angle-double-right" aria-hidden="true"></i>

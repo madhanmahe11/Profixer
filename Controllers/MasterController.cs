@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
-using Profixer.Response;
+using Profixer.Response.City;
+using Profixer.Response.Country;
 
 namespace Profixer.Controllers;
 
@@ -15,8 +17,9 @@ public class MasterController : Controller
         _config = config;
     }
 
-    public async Task<IActionResult> CityList(int countryID, int cityId)
+    public async Task<IActionResult> CityList(int countryID, int cityId, string userID)
     {
+        ViewData["UserID"] = userID;
         string apiUrl = $"{_config.GetSection("BaseURL").Value}api/Master/GetCity?CountryID={countryID}&CityID={cityId}";
         var response = await Get(apiUrl);
         var data = JsonConvert.DeserializeObject<City>(await response.Content.ReadAsStringAsync());
@@ -28,6 +31,32 @@ public class MasterController : Controller
         var response = await Get(apiUrl);
         var data = JsonConvert.DeserializeObject<City>(await response.Content.ReadAsStringAsync());
         return View(data);
+    }
+    public async Task<IActionResult> AddCity(string userID)
+    {
+        ViewData["UserID"] = userID;
+        string apiUrl = $"{_config.GetSection("BaseURL").Value}api/Master/GetCountry?CountryID=0";
+        var response = await Get(apiUrl);
+        var data = JsonConvert.DeserializeObject<Country>(await response.Content.ReadAsStringAsync());
+        ViewBag.Countries = new SelectList(data?.RtnData, "CountryID", "CountryName");
+        return View();
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> AddCity(string CUID, string cityName, int countryID)
+    {
+        string apiUrl = $"{_config.GetSection("BaseURL").Value}api/Master/InsertUpdateCity";
+        var data = new
+        {
+            CityID = 0,
+            CityName = cityName,
+            IsActive = true,
+            CountryID = countryID,
+            CUID = Convert.ToInt32(CUID)
+        };
+        var response = await Post(apiUrl, Newtonsoft.Json.JsonConvert.SerializeObject(data));
+        await AddCity(CUID);
+        return View();
     }
 
     public async Task<HttpResponseMessage> Post(string apiUrl, string data)

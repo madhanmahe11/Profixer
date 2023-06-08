@@ -25,6 +25,7 @@ public class AccountController : Controller
         string apiUrl = $"{_config.GetSection("BaseURL").Value}api/Account/UserLogin";
         var response = await Post(apiUrl, Newtonsoft.Json.JsonConvert.SerializeObject(loginData));
         dynamic data = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
+        ViewData["UserID"] = (int)data?.RtnData.UserID;
 
         if ((bool)data?.RtnStatus.Value)
         {

@@ -1,4 +1,4 @@
-@model Profixer.Response.City.City
+@model Profixer.Response.Country.Country
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,19 +8,19 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
    <title>Add City</title>
    <!-- Favicon -->
-   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+   <link rel="shortcut icon" type="image/x-icon" href="~/img/favicon.png">
    <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+   <link rel="stylesheet" href="~/css/bootstrap.min.css">
    <!-- Fontawesome CSS -->
-   <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+   <link rel="stylesheet" href="~/css/font-awesome.min.css">
    <!-- Feathericon CSS -->
-   <link rel="stylesheet" href="assets/css/feathericon.min.css">
-   <link rel="stylesheet" href="assets/plugins/morris/morris.css">
+   <link rel="stylesheet" href="~/css/feathericon.min.css">
+   <link rel="stylesheet" href="~/plugins/morris/morris.css">
    <!-- Main CSS -->
-   <link rel="stylesheet" href="assets/css/style.css">
+   <link rel="stylesheet" href="~/css/style.css">
    <!--[if lt IE 9]>
-      <script src="assets/js/html5shiv.min.js"></script>
-      <script src="assets/js/respond.min.js"></script>
+      <script src="~/js/html5shiv.min.js"></script>
+      <script src="~/js/respond.min.js"></script>
       <![endif]-->
 
    <style>
@@ -65,6 +65,8 @@
 </head>
 
 <body>
+   <input type="hidden" value=@ViewData["UserID"]>
+
    <!-- Page Wrapper -->
    <div class="page-wrapper">
       <div class="content container-fluid">
@@ -83,22 +85,28 @@
             <div class="col-md-6">
                <div class="card">
                   <div class="card-body">
-                     <form action="#">
+                     <form asp-action="AddCity" asp-controller="Master" method="post">
                         <div class="row">
                            <div class="col-xl-12">
+                              <input type="hidden" name="CUID" value=@ViewData["UserID"]>
                               <div class="form-group row">
                                  <label class="col-lg-12 col-form-label">City Name</label>
                                  <div class="col-lg-12">
-                                    <input type="text" class="form-control" placeholder=@Model.RtnData?.FirstOrDefault()?.CityName>
+                                    <input type="text" name="cityName" class="form-control" placeholder="Muscat">
                                  </div>
                               </div>
                               <div class="form-group row">
-                                 <label class="col-lg-12 col-form-label">Country Name</label>
+                                 <label class="col-lg-12 col-form-label">Country</label>
                                  <div class="col-lg-12">
-                                    <input type="text" class="form-control" placeholder=@Model.RtnData?.FirstOrDefault()?.CountryName>
+                                    @* <input type="text" name="countryName" class="form-control" placeholder="Oman"> *@
+                                    <select id="countryDropdown" class="form-control" name="countryID">
+                                       @foreach (var country in ViewBag.Countries)
+                                       {
+                                          <option value="@country.Value">@country.Text</option>
+                                       }
+                                    </select>
                                  </div>
                               </div>
-
 
                               <div class="form-group row">
                                  <label class="col-lg-5 col-form-label">Status</label>
@@ -123,7 +131,7 @@
                               </div>
                               <div class="text-center">
                                  <div class="popup111" id="popup111">
-                                    <img class="rounded-circle" src="assets/img/tick.png" alt="" style="width: 120px;">
+                                    <img class="rounded-circle" src="~/img/tick.png" alt="" style="width: 120px;">
                                     <h5 style="color:#F4891E;">Added Successfull!</h5>
                                     <p>Work with Profixer and Earn more...!!</p>
                                     <!-- <button type="submit" class="btn btn-primary" onclick="myFunction2()"><b>View</b></button> -->
@@ -182,23 +190,33 @@
       <div class="footer-bottom">
          <div class="container">
             <p style="text-align:center;"><b>© 2023 All Rights Reserved. Developed and Maintained by <img
-                     src="assets/img/dbzeus.png" alt="Logo" style="width:70px;"></b></p>
+                     src="~/img/dbzeus.png" alt="Logo" style="width:70px;"></b></p>
          </div>
       </div>
    </div>
+
+   @section Scripts {
+      @{
+         await Html.RenderPartialAsync("_ValidationScriptsPartial");
+      }
+   }
    <!-- /Page Wrapper -->
    <!-- jQuery -->
-   <script src="assets/js/jquery-3.2.1.min.js"></script>
+   <script src="~/js/jquery-3.2.1.min.js"></script>
    <!-- Bootstrap Core JS -->
-   <script src="assets/js/popper.min.js"></script>
-   <script src="assets/js/bootstrap.min.js"></script>
+   <script src="~/js/popper.min.js"></script>
+   <script src="~/js/bootstrap.min.js"></script>
    <!-- Slimscroll JS -->
-   <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-   <script src="assets/plugins/raphael/raphael.min.js"></script>
-   <script src="assets/plugins/morris/morris.min.js"></script>
-   <script src="assets/js/chart.morris.js"></script>
+   <script src="~/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+   <script src="~/plugins/raphael/raphael.min.js"></script>
+   <script src="~/plugins/morris/morris.min.js"></script>
+   <script src="~/js/chart.morris.js"></script>
    <!-- Custom JS -->
-   <script src="assets/js/script.js"></script>
+   <script src="~/js/script.js"></script>
+
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
    <script>
       function myFunction() {
@@ -232,6 +250,12 @@
       var hide = function (id) {
          $(id).style.display = 'none';
       }
+   </script>
+
+   <script>
+      $(document).ready(function () {
+         $('#countryDropdown').select2();
+      });
    </script>
 </body>
 
