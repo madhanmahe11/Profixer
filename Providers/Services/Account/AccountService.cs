@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using Profixer.Models;
 using Profixer.Providers.Interfaces;
+using Profixer.Response;
 using Profixer.Response.Dashboard;
 
 namespace Profixer.Providers.Services
@@ -15,11 +16,11 @@ namespace Profixer.Providers.Services
             _config = config;
             _client = client;
         }
-        public async Task<dynamic> Login(LoginByUNandPwd loginData)
+        public async Task<LoginResponse> Login(LoginByUNandPwd loginData)
         {
             string apiUrl = $"{_config.GetSection("BaseURL").Value}api/Account/UserLogin";
             var response = await _client.Post(apiUrl, Newtonsoft.Json.JsonConvert.SerializeObject(loginData));
-            dynamic data = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
+            var data = JsonConvert.DeserializeObject<LoginResponse>(await response.Content.ReadAsStringAsync());
             return data;
         }
 

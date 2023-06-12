@@ -1,4 +1,4 @@
-﻿@model Profixer.Response.Dashboard.DashboardResponse
+﻿@model Profixer.Models.DashboardDatas
 
 <!DOCTYPE html>
 <html lang="en">
@@ -147,8 +147,8 @@
                                     class="avatar-img rounded-circle">
                             </div>
                             <div class="user-text">
-                                <h6>Mohamed</h6>
-                                <p class="text-muted mb-0">Admin <br> +966 123456789</p>
+                                <h6>@Model.LoginResponse.RtnData.UserName</h6>
+                                <p class="text-muted mb-0">@Model.LoginResponse.RtnData.RoleName <br>@Model.LoginResponse.RtnData.MobileNo</p>
                             </div>
                         </div>
                         <a class="dropdown-item" href="#"><img src="~/img/change_password.png" width="20"> &nbsp; Change
@@ -171,13 +171,13 @@
                 <div id="sidebar-menu" class="sidebar-menu">
                     <ul>
                         @{
-                            var mainMenuIds = Model.RtnData.Select(x => x.MainMenuID).Distinct();
+                            var mainMenuIds = Model.DashboardResponse.RtnData.Select(x => x.MainMenuID).Distinct();
                         }
                         @foreach (var mainMenuId in mainMenuIds)
                         {
-                            var faIcon = Model.RtnData.Where(v => v.MainMenuID == mainMenuId).Select(x =>
+                            var faIcon = Model.DashboardResponse.RtnData.Where(v => v.MainMenuID == mainMenuId).Select(x =>
                             x.FaIcons).Distinct().FirstOrDefault();
-                            var mainMenu = Model.RtnData.Where(v => v.MainMenuID == mainMenuId).Select(x =>
+                            var mainMenu = Model.DashboardResponse.RtnData.Where(v => v.MainMenuID == mainMenuId).Select(x =>
                             x.MainMenu).Distinct().FirstOrDefault();
 
                             <li class="submenu">
@@ -185,7 +185,7 @@
                                         class="menu-arrow"></span></a>
                                 <ul style="display: none;">
                                     @{
-                                        var subMenus = Model.RtnData.Where(x => x.MainMenuID == mainMenuId).ToList();
+                                        var subMenus = Model.DashboardResponse.RtnData.Where(x => x.MainMenuID == mainMenuId).ToList();
                                     }
                                     @foreach (var subMenu in subMenus)
                                     {

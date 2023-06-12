@@ -24,13 +24,23 @@ public class AccountController : Controller
     public async Task<IActionResult> Dashboard(LoginByUNandPwd loginData)
     {
         var login = await _account.Login(loginData);
-        if ((bool)login?.RtnStatus.Value)
+        if (login.RtnStatus)
         {
-            ViewData["UserID"] = (int)login?.RtnData.UserID;
-            var dashboard = await _account.Dashboard((int)login?.RtnData.UserID);
-            return View(dashboard);
+            ViewData["UserID"] = login.RtnData.UserID;
+            var dashboard = await _account.Dashboard(login.RtnData.UserID);
+            var dashboardDatas = new DashboardDatas();
+            dashboardDatas.DashboardResponse = dashboard;
+            dashboardDatas.LoginResponse = login;
+            return View(dashboardDatas);
             // return await Dashboard((int)login?.RtnData.UserID);
         }
+        // if ((bool)login?.RtnStatus.Value)
+        // {
+        //     ViewData["UserID"] = (int)login?.RtnData.UserID;
+        //     var dashboard = await _account.Dashboard((int)login?.RtnData.UserID);
+        //     return View(dashboard);
+        //     // return await Dashboard((int)login?.RtnData.UserID);
+        // }
         ModelState.AddModelError("", "Incorrect Login details");
         return PartialView("Login", loginData);
     }
