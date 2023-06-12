@@ -1,73 +1,5 @@
-@model Profixer.Response.Country.Country
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-   <title>Add City</title>
-   <!-- Favicon -->
-   <link rel="shortcut icon" type="image/x-icon" href="~/img/favicon.png">
-   <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="~/css/bootstrap.min.css">
-   <!-- Fontawesome CSS -->
-   <link rel="stylesheet" href="~/css/font-awesome.min.css">
-   <!-- Feathericon CSS -->
-   <link rel="stylesheet" href="~/css/feathericon.min.css">
-   <link rel="stylesheet" href="~/plugins/morris/morris.css">
-   <!-- Main CSS -->
-   <link rel="stylesheet" href="~/css/style.css">
-   <!--[if lt IE 9]>
-      <script src="~/js/html5shiv.min.js"></script>
-      <script src="~/js/respond.min.js"></script>
-      <![endif]-->
-
-   <style>
-      * {
-         box-sizing: border-box;
-      }
-
-      #myInput {
-         background-image: url('/css/searchicon.png');
-         background-position: 10px 10px;
-         background-repeat: no-repeat;
-         width: 100%;
-         font-size: 16px;
-         padding: 12px 20px 12px 40px;
-         border: 1px solid #ddd;
-         margin-bottom: 12px;
-      }
-
-      #myTable {
-         border-collapse: collapse;
-         width: 100%;
-         border: 1px solid #ddd;
-         font-size: 18px;
-      }
-
-      #myTable th,
-      #myTable td {
-         text-align: left;
-         padding: 10px;
-         font-size: 15px;
-      }
-
-      #myTable tr {
-         border-bottom: 1px solid #ddd;
-      }
-
-      #myTable tr.header,
-      #myTable tr:hover {
-         background-color: #f1f1f1;
-      }
-   </style>
-</head>
-
-<body>
-   <input type="hidden" value=@ViewData["UserID"]>
-
-   <!-- Page Wrapper -->
+<!-- Page Wrapper -->
+<div id="addCity">
    <div class="page-wrapper">
       <div class="content container-fluid">
          <!-- Page Header -->
@@ -85,7 +17,7 @@
             <div class="col-md-6">
                <div class="card">
                   <div class="card-body">
-                     <form asp-action="AddCity" asp-controller="Master" method="post">
+                     <form asp-action="" asp-controller="Master" method="post">
                         <div class="row">
                            <div class="col-xl-12">
                               <input type="hidden" name="CUID" value=@ViewData["UserID"]>
@@ -99,12 +31,12 @@
                                  <label class="col-lg-12 col-form-label">Country</label>
                                  <div class="col-lg-12">
                                     @* <input type="text" name="countryName" class="form-control" placeholder="Oman"> *@
-                                    <select id="countryDropdown" class="form-control" name="countryID">
-                                       @foreach (var country in ViewBag.Countries)
-                                       {
-                                          <option value="@country.Value">@country.Text</option>
-                                       }
-                                    </select>
+                                    @* <select id="countryDropdown" class="form-control" name="countryID">
+                                    @foreach (var country in ViewBag.Countries)
+                                    {
+                                    <option value="@country.Value">@country.Text</option>
+                                    }
+                                    </select> *@
                                  </div>
                               </div>
 
@@ -123,8 +55,14 @@
 
                               <div class="form-group row">
                                  <!-- <label class="col-lg-6 col-form-label">Status</label> -->
+                                 @* <div style="text-align: left;" class="col-lg-12">
+
+                                 </div> *@
+
                                  <div style="text-align: center;" class="col-lg-12">
-                                    <button class="btn btn-primary" href="#" onclick="show('popup111')"><b>&nbsp;
+                                    <a id="btnBacktoCityList" style="color:white" class="btn btn-primary"><b>&nbsp;
+                                          &nbsp; Back &nbsp; &nbsp;</b></a>
+                                    <button class="btn btn-primary" onclick="show('popup111')"><b>&nbsp;
                                           &nbsp; Add &nbsp; &nbsp;</b></button>
                                  </div>
 
@@ -194,69 +132,68 @@
          </div>
       </div>
    </div>
+</div>
 
-   @section Scripts {
-      @{
-         await Html.RenderPartialAsync("_ValidationScriptsPartial");
-      }
+@section Scripts {
+   @{
+      await Html.RenderPartialAsync("_ValidationScriptsPartial");
    }
-   <!-- /Page Wrapper -->
-   <!-- jQuery -->
-   <script src="~/js/jquery-3.2.1.min.js"></script>
-   <!-- Bootstrap Core JS -->
-   <script src="~/js/popper.min.js"></script>
-   <script src="~/js/bootstrap.min.js"></script>
-   <!-- Slimscroll JS -->
-   <script src="~/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-   <script src="~/plugins/raphael/raphael.min.js"></script>
-   <script src="~/plugins/morris/morris.min.js"></script>
-   <script src="~/js/chart.morris.js"></script>
-   <!-- Custom JS -->
-   <script src="~/js/script.js"></script>
+}
+<!-- /Page Wrapper -->
+<!-- jQuery -->
+<script src="~/js/jquery-3.2.1.min.js"></script>
+<!-- Bootstrap Core JS -->
+<script src="~/js/popper.min.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<!-- Slimscroll JS -->
+<script src="~/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="~/plugins/raphael/raphael.min.js"></script>
+<script src="~/plugins/morris/morris.min.js"></script>
+<script src="~/js/chart.morris.js"></script>
+<!-- Custom JS -->
+<script src="~/js/script.js"></script>
 
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
-   <script>
-      function myFunction() {
-         var input, filter, table, tr, td, i, txtValue;
-         input = document.getElementById("myInput");
-         filter = input.value.toUpperCase();
-         table = document.getElementById("myTable");
-         tr = table.getElementsByTagName("tr");
-         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-            if (td) {
-               txtValue = td.textContent || td.innerText;
-               if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                  tr[i].style.display = "";
-               } else {
-                  tr[i].style.display = "none";
-               }
+<script>
+   $(document).ready(function () {
+      $('#btnBacktoCityList').on('click', function () {
+         $('#lstCity').show();
+         $('#addCity').hide();
+      });
+      $('#countryDropdown').select2();
+   });
+   function myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+         td = tr[i].getElementsByTagName("td")[0];
+         if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+               tr[i].style.display = "";
+            } else {
+               tr[i].style.display = "none";
             }
          }
       }
-   </script>
+   }
+</script>
 
-   <script>
-      $ = function (id) {
-         return document.getElementById(id);
-      }
+<script>
+   $ = function (id) {
+      return document.getElementById(id);
+   }
 
-      var show = function (id) {
-         $(id).style.display = 'block';
-      }
-      var hide = function (id) {
-         $(id).style.display = 'none';
-      }
-   </script>
-
-   <script>
-      $(document).ready(function () {
-         $('#countryDropdown').select2();
-      });
-   </script>
-</body>
-
-</html>
+   var show = function (id) {
+      $(id).style.display = 'block';
+   }
+   var hide = function (id) {
+      $(id).style.display = 'none';
+   }
+</script>

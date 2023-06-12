@@ -261,7 +261,7 @@ Version      : 1.0
 	const hasTemp = localStorage.getItem('skin-color');
 	
 	if(!!hasTemp) {
-		$('head').append('<link id="tempSkin" rel="stylesheet" href="assets/css/style-'+hasTemp+'.css">')
+		$('head').append('<link id="tempSkin" rel="stylesheet" href="~/css/style-'+hasTemp+'.css">')
 		$('body').find('.skin-colors a').each(function(){
 		const name = $(this).attr('data-color');
 		
@@ -296,9 +296,9 @@ Version      : 1.0
 			$('#tempSkin').remove();
 		} else {
 			if($('#tempSkin').length === 0) {
-				$('head').append('<link id="tempSkin" rel="stylesheet" href="assets/css/style-'+skin+'.css">')
+				$('head').append('<link id="tempSkin" rel="stylesheet" href="~/css/style-'+skin+'.css">')
 			} else {
-				$('#tempSkin').attr('href', 'assets/css/style-'+skin+'.css');
+				$('#tempSkin').attr('href', '~/css/style-'+skin+'.css');
 			}
 			localStorage.setItem('skin-color', skin);
 		}

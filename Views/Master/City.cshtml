@@ -1,0 +1,199 @@
+@model Profixer.Response.City.City
+
+<style>
+   * {
+      box-sizing: border-box;
+   }
+
+   #myInput {
+      background-image: url('/css/searchicon.png');
+      background-position: 10px 10px;
+      background-repeat: no-repeat;
+      width: 100%;
+      font-size: 16px;
+      padding: 12px 20px 12px 40px;
+      border: 1px solid #ddd;
+      margin-bottom: 12px;
+   }
+
+   #myTable {
+      border-collapse: collapse;
+      width: 100%;
+      border: 1px solid #ddd;
+      font-size: 18px;
+   }
+
+   #myTable th,
+   #myTable td {
+      text-align: left;
+      padding: 10px;
+      font-size: 15px;
+   }
+
+   #myTable tr {
+      border-bottom: 1px solid #ddd;
+   }
+
+   #myTable tr.header,
+   #myTable tr:hover {
+      background-color: #f1f1f1;
+   }
+</style>
+<!-- Page Wrapper -->
+<div id="lstCity">
+   <div class="page-wrapper">
+      <div class="content container-fluid">
+         <!-- Page Header -->
+         <div class="page-header">
+            <div class="row">
+               <div class="col-sm-12">
+                  <h5 class="page-title">City</h5>
+
+               </div>
+            </div>
+         </div>
+         <!-- /Page Header -->
+         <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+               <div class="card">
+                  <div class="card-body">
+                     <form action="#">
+                        <div class="row">
+                           <div class="col-xl-12">
+
+                              <div class="form-group row">
+                                 <!-- <label class="col-lg-5 col-form-label">Customer Name</label> -->
+                                 <input class="col-lg-9 col-form-label" type="text" id="myInput" onkeyup="myFunction()"
+                                    placeholder="Search" title="Type in a name">
+                                 <div class="col-lg-3 text-center">
+                                    <button type="button" class="btn btn-primary" style="width:70px; height: 50px;"><b>
+                                          <a id="btnAddCity" onclick="EditCityAjax(null, null, @ViewBag.UserID)"
+                                             style="color:#fff;"><i class="fa fa-plus" aria-hidden="true"></i>
+                                             Add</a></b></button>
+                                 </div>
+                              </div>
+
+                              <div class="form-group row">
+                                 <!-- <p>Customer Name / Mobile Number</p> -->
+                                 <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Type in a name"><button type="submit" class="btn btn-primary"><b><a href="#" style="color:#fff;"><i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Add as New Customer</a></b></button> -->
+
+                                 <table id="myTable">
+
+                                    <!-- <tr>
+                                             <td colspan="2" style="text-align:center;"><button type="submit" class="btn btn-primary"><b><a href="add_ticket_details.html" style="color:#fff;"><i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Add as New Customer</a></b></button></td>
+                                          </tr> -->
+                                    @foreach (var item in Model.RtnData)
+                                    {
+                                       @* var isChecked = item.IsActive ? "checked" : ""; *@
+                                       <tr>
+                                          <td><button class="btn buttons-pdf buttons-html5 btn-sm mr-1"
+                                                style="color: #fff; border-color: #F4891E; background-color: #F4891E;"
+                                                tabindex="0" aria-controls="" type="button"
+                                                title="Add"><span><b>@item.CityName.Substring(0,2)</b></span></button></td>
+                                          <td><a id="btnAddCity"
+                                                onclick="EditCityAjax(@item.CountryID, @item.CityID, @ViewBag.UserID)"
+                                                style="color: #F4891E;">@item.CityName<br> <span
+                                                   style="color: #F4891E;">@item.CountryName</span></a></td>
+                                          @* <td style="text-align:right;"><label class="switch">
+                                       <input type="checkbox" @isChecked>
+                                       <span class="slider round"></span>
+                                       </label></td> *@
+                                       </tr>
+                                    }
+                                 </table>
+                              </div>
+                           </div>
+
+                        </div>
+
+                     </form>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-3"></div>
+         </div>
+      </div>
+      <br><br><br>
+      <hr>
+      <div class="footer-bottom">
+         <div class="container">
+            <p style="text-align:center;"><b>© 2023 All Rights Reserved. Developed and Maintained by <img
+                     src="~/img/dbzeus.png" alt="Logo" style="width:70px;"></b></p>
+         </div>
+      </div>
+   </div>
+   <!-- /Page Wrapper -->
+</div>
+<!--Add Page-->
+<div id="addCity" style="display:none">
+   @Html.Partial("AddCity", new Profixer.Models.Master.City())
+</div>
+<!--/Add Page-->
+@section Scripts {
+   @{
+      await Html.RenderPartialAsync("_ValidationScriptsPartial");
+   }
+}
+<!-- jQuery -->
+<script src="~/js/jquery-3.2.1.min.js"></script>
+<!-- Bootstrap Core JS -->
+<script src="~/js/popper.min.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<!-- Slimscroll JS -->
+<script src="~/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="~/plugins/raphael/raphael.min.js"></script>
+<script src="~/plugins/morris/morris.min.js"></script>
+<script src="~/js/chart.morris.js"></script>
+<!-- Custom JS -->
+<script src="~/js/script.js"></script>
+
+<script>
+   function myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+         td = tr[i].getElementsByTagName("td")[0];
+         if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+               tr[i].style.display = "";
+            } else {
+               tr[i].style.display = "none";
+            }
+         }
+      }
+   }
+</script>
+<script>
+   $(function () {
+      $('#btnAddCity').on('click', function () {
+         $('#lstCity').hide();
+         $('#addCity').show();
+      });
+      $('#btnBacktoCityList').on('click', function () {
+         $('#lstCity').show();
+         $('#addCity').hide();
+      });
+   });
+
+   function EditCityAjax(countryID, cityID, userID) {
+      $.ajax({
+         type: 'GET',
+         url: './GetCityList',
+         data: { 'countryID': countryID, 'cityID': cityID, 'userID': userID },
+         success: function (response) {
+            $('#addCity').html(response);
+            $('#lstCity').hide();
+            $('#addCity').show();
+         },
+         error: function (response) {
+            console.log('error');
+         }
+      });
+      return false;
+   }
+</script>

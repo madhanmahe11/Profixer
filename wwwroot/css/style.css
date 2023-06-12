@@ -4056,7 +4056,7 @@ display: block;
 
 
 .ovr{
-	background-image: url(assets/img/overview_bg.png);
+	background-image: url(~/img/overview_bg.png);
                            background-size: 100% 100%;    
                            background-repeat: no-repeat;
 }

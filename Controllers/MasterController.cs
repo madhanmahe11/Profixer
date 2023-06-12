@@ -17,13 +17,47 @@ public class MasterController : Controller
         _config = config;
     }
 
-    public async Task<IActionResult> CityList(int countryID, int cityId, string userID)
+    // public async Task<IActionResult> GetCityList(int? countryID, int? cityID, int? userID)
+    // {
+    //     try
+    //     {
+    //         if (countryID != null && cityID != null)
+    //         {
+    //             string apiUrl = $"{_config.GetSection("BaseURL").Value}api/Master/GetCity?CountryID={countryID}&CityID={cityID}";
+    //             var response = await Get(apiUrl);
+    //             var data = JsonConvert.DeserializeObject<City>(await response.Content.ReadAsStringAsync());
+    //             ViewBag.UserID = userID;
+    //             return PartialView("AddCity");
+    //         }
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         ModelState.AddModelError("", "Unable to perform opertaion. Try again, and if the problem persists, see your system administrator.");
+    //     }
+    //     return PartialView("AddCity");
+    // }
+
+    public ActionResult GetCityList(int? countryID, int? cityID, int? userID)
+    {
+        return PartialView("AddCity");
+    }
+
+    public async Task<IActionResult> City(int countryID, int cityId, string userID)
     {
         ViewData["UserID"] = userID;
+        ViewBag.UserID = userID;
         string apiUrl = $"{_config.GetSection("BaseURL").Value}api/Master/GetCity?CountryID={countryID}&CityID={cityId}";
         var response = await Get(apiUrl);
         var data = JsonConvert.DeserializeObject<City>(await response.Content.ReadAsStringAsync());
         return View(data);
+    }
+
+    public async void GetCities()
+    {
+        string apiUrl = $"{_config.GetSection("BaseURL").Value}api/Master/GetCountry?CountryID=0";
+        var response = await Get(apiUrl);
+        var data = JsonConvert.DeserializeObject<Country>(await response.Content.ReadAsStringAsync());
+        ViewBag.Countries = new SelectList(data?.RtnData, "CountryID", "CountryName");
     }
     public async Task<IActionResult> EditCity(int countryID, int cityID)
     {
@@ -41,7 +75,7 @@ public class MasterController : Controller
         ViewBag.Countries = new SelectList(data?.RtnData, "CountryID", "CountryName");
         return View();
     }
-    
+
     [HttpPost]
     public async Task<IActionResult> AddCity(string CUID, string cityName, int countryID)
     {

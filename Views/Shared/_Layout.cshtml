@@ -5,9 +5,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <title>Profixer - Dashboard</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Newmvc.styles.css" asp-append-version="true" />
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="~/img/favicon.png">
     <!-- Bootstrap CSS -->
@@ -152,8 +149,6 @@
                                 <p class="text-muted mb-0">Admin <br> +966 123456789</p>
                             </div>
                         </div>
-                        <a class="dropdown-item" href="#"><img src="~/img/change_account_details.png" width="20"> &nbsp;
-                            Change Account Details</a>
                         <a class="dropdown-item" href="#"><img src="~/img/change_password.png" width="20"> &nbsp; Change
                             Password</a>
                         <a class="dropdown-item" href="#"><img src="~/img/privacy_policy.png" width="20"> &nbsp; Privacy
@@ -194,7 +189,7 @@
                             <a href="#"><i class="fe fe-tiled"></i> <span> Master</span> <span
                                     class="menu-arrow"></span></a>
                             <ul style="display: none;">
-                                <li><a href="@Url.Action("CityList", "Master", new { userID = @ViewData["UserID"] })"><i
+                                <li><a href="@Url.Action("City", "Master", new { userID = @ViewData["UserID"] })"><i
                                             class="fa fa-angle-double-right" aria-hidden="true"></i>City</a></li>
                                 <li><a href="area.html"><i class="fa fa-angle-double-right"
                                             aria-hidden="true"></i>Area</a></li>
@@ -247,11 +242,6 @@
     <script src="~/js/chart.morris.js"></script>
     <!-- Custom JS -->
     <script src="~/js/script.js"></script>
-
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 
