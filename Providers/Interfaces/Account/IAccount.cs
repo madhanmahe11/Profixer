@@ -3,7 +3,7 @@ using Profixer.Response;
 using Profixer.Response.Dashboard;
 using Profixer.Response.TicketCount;
 
-namespace Profixer.Providers.Interfaces
+namespace Profixer.Providers.Interfaces.Account
 {
     public interface IAccount
     {

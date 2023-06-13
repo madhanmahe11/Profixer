@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using Profixer.Models;
 using Profixer.Providers.Interfaces;
+using Profixer.Providers.Interfaces.Account;
 using Profixer.Response;
 using Profixer.Response.Dashboard;
 using Profixer.Response.TicketCount;

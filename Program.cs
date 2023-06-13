@@ -1,9 +1,12 @@
 using Profixer.Providers.Interfaces;
+using Profixer.Providers.Interfaces.Account;
+using Profixer.Providers.Interfaces.Master;
 using Profixer.Providers.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IAccount, AccountService>();
+builder.Services.AddScoped<IMaster, MasterService>();
 builder.Services.AddScoped<IClient, ClientService>();
 
 // Add services to the container.

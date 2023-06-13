@@ -1,4 +1,7 @@
-@model Profixer.Response.City.City
+@model Profixer.Models.DashboardDatas
+@{
+   Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 <style>
    * {
@@ -83,7 +86,7 @@
                                     <!-- <tr>
                                              <td colspan="2" style="text-align:center;"><button type="submit" class="btn btn-primary"><b><a href="add_ticket_details.html" style="color:#fff;"><i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Add as New Customer</a></b></button></td>
                                           </tr> -->
-                                    @foreach (var item in Model.RtnData)
+                                    @foreach (var item in Model.CityResponse.RtnData)
                                     {
                                        @* var isChecked = item.IsActive ? "checked" : ""; *@
                                        <tr>

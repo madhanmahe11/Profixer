@@ -1,5 +1,3 @@
-using Profixer.Models;
-
 namespace Profixer.Providers.Interfaces
 {
     public interface IClient

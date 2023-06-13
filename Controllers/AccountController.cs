@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Profixer.Models;
-using Profixer.Providers.Interfaces;
+using Profixer.Providers.Interfaces.Account;
 
 namespace Profixer.Controllers;
 
@@ -27,10 +27,13 @@ public class AccountController : Controller
         if (login.RtnStatus)
         {
             ViewData["UserID"] = login.RtnData.UserID;
+            ViewData["UserName"] = login.RtnData.UserName;
+            ViewData["RoleName"] = login.RtnData.RoleName;
+            ViewData["ImagePath"] = login.RtnData.ImagePath;
+            ViewData["MobileNo"] = login.RtnData.MobileNo;
             var dashboard = await _account.Dashboard(login.RtnData.UserID);
             var dashboardDatas = new DashboardDatas();
             dashboardDatas.DashboardResponse = dashboard;
-            dashboardDatas.LoginResponse = login;
 
             var getTicketCount = await _account.TicketCount(login.RtnData.UserID);
             dashboardDatas.TicketCountResponse = getTicketCount;
