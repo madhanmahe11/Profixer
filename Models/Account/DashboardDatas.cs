@@ -1,5 +1,6 @@
 using Profixer.Response;
 using Profixer.Response.Dashboard;
+using Profixer.Response.TicketCount;
 
 namespace Profixer.Models
 {
@@ -7,5 +8,6 @@ namespace Profixer.Models
     {
         public DashboardResponse DashboardResponse { get; set; }
         public LoginResponse LoginResponse { get; set; }
+        public TicketCountResponse TicketCountResponse { get; set; }
     }
 }

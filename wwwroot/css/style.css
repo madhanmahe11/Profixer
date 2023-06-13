@@ -4172,7 +4172,7 @@ display: block;
     width: 90px;
     height: 90px;
     border-radius: 50%;
-    background: rgba(52, 194, 255, 0.6);
+    /* background: rgba(52, 194, 255, 0.6); */
     right: -10px;
     top: -18px;
 }
@@ -4182,7 +4182,7 @@ display: block;
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    background: rgba(52, 194, 255, 0.3);
+    /* background: rgba(52, 194, 255, 0.3); */
     right: -20px;
     top: 20px;
 }

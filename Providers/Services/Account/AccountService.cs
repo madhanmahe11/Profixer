@@ -3,6 +3,7 @@ using Profixer.Models;
 using Profixer.Providers.Interfaces;
 using Profixer.Response;
 using Profixer.Response.Dashboard;
+using Profixer.Response.TicketCount;
 
 namespace Profixer.Providers.Services
 {
@@ -30,6 +31,14 @@ namespace Profixer.Providers.Services
             var response = await _client.Get(apiUrl);
             // dynamic data = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
             var data = JsonConvert.DeserializeObject<DashboardResponse>(await response.Content.ReadAsStringAsync());
+            return data;
+        }
+
+        public async Task<TicketCountResponse> TicketCount(int userId)
+        {
+            string apiUrl = $"{_config.GetSection("BaseURL").Value}api/Supportdesk/GetTicketCount?UserID={userId}&TicketStatusID=0&FromDate=05/01/2023&ToDate=01/01/2024";
+            var response = await _client.Get(apiUrl);
+            var data = JsonConvert.DeserializeObject<TicketCountResponse>(await response.Content.ReadAsStringAsync());
             return data;
         }
     }

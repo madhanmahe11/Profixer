@@ -1,4 +1,10 @@
+using Profixer.Providers.Interfaces;
+using Profixer.Providers.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<IAccount, AccountService>();
+builder.Services.AddScoped<IClient, ClientService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -23,5 +29,5 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Account}/{action=Index}/{id?}");
-
+    
 app.Run();

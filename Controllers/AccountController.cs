@@ -31,6 +31,10 @@ public class AccountController : Controller
             var dashboardDatas = new DashboardDatas();
             dashboardDatas.DashboardResponse = dashboard;
             dashboardDatas.LoginResponse = login;
+
+            var getTicketCount = await _account.TicketCount(login.RtnData.UserID);
+            dashboardDatas.TicketCountResponse = getTicketCount;
+
             return View(dashboardDatas);
             // return await Dashboard((int)login?.RtnData.UserID);
         }
