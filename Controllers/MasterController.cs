@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Profixer.Models;
+using Profixer.Models.Account;
+using Profixer.Models.Master;
 using Profixer.Providers.Interfaces.Account;
 using Profixer.Providers.Interfaces.Master;
 
@@ -39,74 +40,20 @@ public class MasterController : Controller
         var countryList = await _master.CountryList(countryID);
         ViewBag.Countries = new SelectList(countryList?.RtnData, "CountryID", "CountryName");
 
+        if (countryID != 0 && cityId != 0)
+        {
+            ViewBag.CityName = cityList.RtnData.FirstOrDefault()?.CityName;
+            ViewBag.CountryId = countryID;
+
+            return PartialView("AddCity");
+        }
         return PartialView("City", dashboardDatas);
     }
 
-    // public async Task<IActionResult> GetCityList(int? countryID, int? cityID, int? userID)
-    // {
-    //     try
-    //     {
-    //         if (countryID != null && cityID != null)
-    //         {
-    //             string apiUrl = $"{_config.GetSection("BaseURL").Value}api/Master/GetCity?CountryID={countryID}&CityID={cityID}";
-    //             var response = await Get(apiUrl);
-    //             var data = JsonConvert.DeserializeObject<City>(await response.Content.ReadAsStringAsync());
-    //             ViewBag.UserID = userID;
-    //             return PartialView("AddCity");
-    //         }
-    //     }
-    //     catch (Exception ex)
-    //     {
-    //         ModelState.AddModelError("", "Unable to perform opertaion. Try again, and if the problem persists, see your system administrator.");
-    //     }
-    //     return PartialView("AddCity");
-    // }
-
-    // public ActionResult GetCityList(int? countryID, int? cityID, int? userID)
-    // {
-    //     return PartialView("AddCity");
-    // }
-
-
-
-    // public async void GetCities()
-    // {
-    //     string apiUrl = $"{_config.GetSection("BaseURL").Value}api/Master/GetCountry?CountryID=0";
-    //     var response = await Get(apiUrl);
-    //     var data = JsonConvert.DeserializeObject<Country>(await response.Content.ReadAsStringAsync());
-    //     ViewBag.Countries = new SelectList(data?.RtnData, "CountryID", "CountryName");
-    // }
-    // public async Task<IActionResult> EditCity(int countryID, int cityID)
-    // {
-    //     string apiUrl = $"{_config.GetSection("BaseURL").Value}api/Master/GetCity?CountryID={countryID}&CityID={cityID}";
-    //     var response = await Get(apiUrl);
-    //     var data = JsonConvert.DeserializeObject<City>(await response.Content.ReadAsStringAsync());
-    //     return View(data);
-    // }
-    // public async Task<IActionResult> AddCity(string userID)
-    // {
-    //     ViewData["UserID"] = userID;
-    //     string apiUrl = $"{_config.GetSection("BaseURL").Value}api/Master/GetCountry?CountryID=0";
-    //     var response = await Get(apiUrl);
-    //     var data = JsonConvert.DeserializeObject<Country>(await response.Content.ReadAsStringAsync());
-    //     ViewBag.Countries = new SelectList(data?.RtnData, "CountryID", "CountryName");
-    //     return View();
-    // }
-
-    // [HttpPost]
-    // public async Task<IActionResult> AddCity(string CUID, string cityName, int countryID)
-    // {
-    //     string apiUrl = $"{_config.GetSection("BaseURL").Value}api/Master/InsertUpdateCity";
-    //     var data = new
-    //     {
-    //         CityID = 0,
-    //         CityName = cityName,
-    //         IsActive = true,
-    //         CountryID = countryID,
-    //         CUID = Convert.ToInt32(CUID)
-    //     };
-    //     var response = await Post(apiUrl, Newtonsoft.Json.JsonConvert.SerializeObject(data));
-    //     await AddCity(CUID);
-    //     return View();
-    // }
+    [HttpPost]
+    public async Task<IActionResult> AddorEditCity(City city)
+    {
+        var addCity = await _master.AddCity(city);
+        return PartialView("City");
+    }
 }

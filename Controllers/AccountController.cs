@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Profixer.Models;
+using Profixer.Models.Account;
 using Profixer.Providers.Interfaces.Account;
 
 namespace Profixer.Controllers;

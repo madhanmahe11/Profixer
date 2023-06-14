@@ -1,4 +1,4 @@
-@model Profixer.Models.DashboardDatas
+@model Profixer.Models.Account.DashboardDatas
 @{
    Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -71,8 +71,8 @@
                                     placeholder="Search" title="Type in a name">
                                  <div class="col-lg-3 text-center">
                                     <button type="button" class="btn btn-primary" style="width:70px; height: 50px;"><b>
-                                          <a id="btnAddCity" onclick="EditCityAjax(null, null, @ViewBag.UserID)"
-                                             style="color:#fff;"><i class="fa fa-plus" aria-hidden="true"></i>
+                                          <a id="btnAddCity" style="color:#fff;"><i class="fa fa-plus"
+                                                aria-hidden="true"></i>
                                              Add</a></b></button>
                                  </div>
                               </div>
@@ -94,8 +94,7 @@
                                                 style="color: #fff; border-color: #F4891E; background-color: #F4891E;"
                                                 tabindex="0" aria-controls="" type="button"
                                                 title="Add"><span><b>@item.CityName.Substring(0,2)</b></span></button></td>
-                                          <td><a id="btnAddCity"
-                                                onclick="EditCityAjax(@item.CountryID, @item.CityID, @ViewBag.UserID)"
+                                          <td><a onclick="EditCityAjax(@item.CountryID, @item.CityID)"
                                                 style="color: #F4891E;">@item.CityName<br> <span
                                                    style="color: #F4891E;">@item.CountryName</span></a></td>
                                           @* <td style="text-align:right;"><label class="switch">
@@ -129,8 +128,8 @@
    <!-- /Page Wrapper -->
 </div>
 <!--Add Page-->
-<div id="addCity" style="display:none">
-   @Html.Partial("AddCity", new Profixer.Models.Master.City())
+<div id="addCityPartial" style="display:none">
+   @Html.Partial("AddCity")
 </div>
 <!--/Add Page-->
 @section Scripts {
@@ -173,28 +172,31 @@
 </script>
 <script>
    $(function () {
-      $('#btnAddCity').on('click', function () {
-         $('#lstCity').hide();
-         $('#addCity').show();
-      });
       $('#btnBacktoCityList').on('click', function () {
          $('#lstCity').show();
-         $('#addCity').hide();
+         $('#addCityPartial').hide();
+      });
+      $('#btnAddCity').on('click', function () {
+         $('#lstCity').hide();
+         $('#addCityPartial').show();
       });
    });
 
-   function EditCityAjax(countryID, cityID, userID) {
+   function EditCityAjax(countryID, cityID) {
       $.ajax({
          type: 'GET',
-         url: './GetCityList',
-         data: { 'countryID': countryID, 'cityID': cityID, 'userID': userID },
+         url: './City',
+         data: { 'countryID': countryID, 'cityID': cityID },
          success: function (response) {
-            $('#addCity').html(response);
-            $('#lstCity').hide();
-            $('#addCity').show();
+            console.log("success")
          },
          error: function (response) {
             console.log('error');
+         },
+         complete: function (data) {
+            console.log("complete")
+            $('#lstCity').hide();
+            $('#addCityPartial').show();
          }
       });
       return false;

@@ -1,4 +1,4 @@
-namespace Profixer.Models
+namespace Profixer.Models.Account
 {
     public class LoginByUNandPwd
     {

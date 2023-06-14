@@ -1,4 +1,4 @@
-using Profixer.Models;
+using Profixer.Models.Account;
 using Profixer.Response;
 using Profixer.Response.Dashboard;
 using Profixer.Response.TicketCount;

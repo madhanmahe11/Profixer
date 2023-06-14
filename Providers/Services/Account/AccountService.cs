@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using Profixer.Models;
+using Profixer.Models.Account;
 using Profixer.Providers.Interfaces;
 using Profixer.Providers.Interfaces.Account;
 using Profixer.Response;
@@ -30,7 +31,6 @@ namespace Profixer.Providers.Services
         {
             string apiUrl = $"{_config.GetSection("BaseURL").Value}api/Account/GetMenuWeb?RoleId={roleId}";
             var response = await _client.Get(apiUrl);
-            // dynamic data = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
             var data = JsonConvert.DeserializeObject<DashboardResponse>(await response.Content.ReadAsStringAsync());
             return data;
         }
