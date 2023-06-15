@@ -189,10 +189,12 @@
                                     }
                                     @foreach (var subMenu in subMenus)
                                     {
-                                        <li><a href="@Url.Action(subMenu.ActionName, subMenu.Controller)"
-                                               ><i class="fa fa-angle-double-right"
-                                                    aria-hidden="true"></i>
-                                                @subMenu.SubMenu</a></li>
+                                        <li class="submenu-item">
+                                            <a href="@Url.Action(subMenu.ActionName, subMenu.Controller)">
+                                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                            @subMenu.SubMenu
+                                            </a>
+                                        </li>
                                     }
                                 </ul>
                             </li>
