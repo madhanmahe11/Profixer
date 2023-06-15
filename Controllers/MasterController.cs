@@ -54,6 +54,6 @@ public class MasterController : Controller
     public async Task<IActionResult> AddorEditCity(City city)
     {
         var addCity = await _master.AddCity(city);
-        return PartialView("City");
+        return PartialView("AddCity");
     }
 }
