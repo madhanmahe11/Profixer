@@ -38,7 +38,7 @@ namespace Profixer.Providers.Services
                 CountryID = city.CountryID,
                 CUID = 1
             };
-            var response = await _client.Post(apiUrl, Newtonsoft.Json.JsonConvert.SerializeObject(data));
+            // var response = await _client.Post(apiUrl, Newtonsoft.Json.JsonConvert.SerializeObject(data));
             return city;
         }
 

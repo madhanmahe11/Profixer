@@ -5,12 +5,12 @@ using Profixer.Providers.Interfaces.Account;
 
 namespace Profixer.Controllers;
 
-public class AccountController : Controller
+public class HomeController : Controller
 {
-    private readonly ILogger<AccountController> _logger;
+    private readonly ILogger<HomeController> _logger;
     private readonly IAccount _account;
 
-    public AccountController(ILogger<AccountController> logger, IAccount account)
+    public HomeController(ILogger<HomeController> logger, IAccount account)
     {
         _account = account;
         _logger = logger;
@@ -21,7 +21,7 @@ public class AccountController : Controller
         return PartialView("Login");
     }
 
-    [HttpPost]
+    // [HttpPost]
     public async Task<IActionResult> Dashboard(LoginByUNandPwd loginData)
     {
         var login = await _account.Login(loginData);
@@ -40,15 +40,7 @@ public class AccountController : Controller
             dashboardDatas.TicketCountResponse = getTicketCount;
 
             return View(dashboardDatas);
-            // return await Dashboard((int)login?.RtnData.UserID);
         }
-        // if ((bool)login?.RtnStatus.Value)
-        // {
-        //     ViewData["UserID"] = (int)login?.RtnData.UserID;
-        //     var dashboard = await _account.Dashboard((int)login?.RtnData.UserID);
-        //     return View(dashboard);
-        //     // return await Dashboard((int)login?.RtnData.UserID);
-        // }
         ModelState.AddModelError("", "Incorrect Login details");
         return PartialView("Login", loginData);
     }
